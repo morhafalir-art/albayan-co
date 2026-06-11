@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>شركة البيان للشحن الخارجي</title>
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+<style>
+
+/* =====================================================
+   RESET
+===================================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+    overflow-x:hidden;
+}
+
+body{
+    font-family:'Cairo',sans-serif;
+    background:#06101d;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* =====================================================
+   VARIABLES
+===================================================== */
+
+:root{
+
+    --bg:#06101d;
+    --bg2:#0b1628;
+
+    --primary:#2f6bff;
+    --secondary:#5c7cff;
+
+    --card:rgba(255,255,255,0.06);
+
+    --border:rgba(255,255,255,0.08);
+
+    --shadow:
+    0 0 35px rgba(47,107,255,0.2);
+
+    --transition:0.4s ease;
+}
+
+/* =====================================================
+   LOADER
+===================================================== */
+
+.loader{
+    position:fixed;
+    inset:0;
+    background:#040913;
+    z-index:999999;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:1s;
+}
+
+.loader.hide{
+    opacity:0;
+    visibility:hidden;
+}
+
+.loader-circle{
+    width:80px;
+    height:80px;
+    border-radius:50%;
+    border:4px solid rgba(255,255,255,0.08);
+    border-top:4px solid var(--primary);
+    animation:spin 1s linear infinite;
+}
+
+@keyframes spin{
+    100%{
+        transform:rotate(360deg);
+    }
+}
+
+/* =====================================================
+   BACKGROUND GLOW
+===================================================== */
+
+.bg-glow{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    z-index:-2;
+}
+
+.glow{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(80px);
+    opacity:0.15;
+}
+
+.glow1{
+    width:500px;
+    height:500px;
+    background:#2f6bff;
+    top:-150px;
+    right:-150px;
+}
+
+.glow2{
+    width:400px;
+    height:400px;
+    background:#5c7cff;
+    bottom:-100px;
+    left:-100px;
+}
+
+/* =====================================================
+   PARTICLES
+===================================================== */
+
+.particles{
+    position:fixed;
+    inset:0;
+    z-index:-1;
+    overflow:hidden;
+}
+
+.particles span{
+    position:absolute;
+    width:4px;
+    height:4px;
+    background:rgba(255,255,255,0.18);
+    border-radius:50%;
+    animation:float linear infinite;
+}
+
+@keyframes float{
+
+    from{
+        transform:translateY(0);
+        opacity:0;
+    }
+
+    15%{
+        opacity:1;
+    }
+
+    to{
+        transform:translateY(-120vh);
+        opacity:0;
+    }
+}
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+header{
+    position:fixed;
+    top:0;
+    width:100%;
+    z-index:9999;
+    backdrop-filter:blur(15px);
+    background:rgba(4,10,20,0.55);
+    border-bottom:1px solid rgba(255,255,255,0.05);
+}
+
+nav{
+    max-width:1300px;
+    margin:auto;
+    padding:18px 20px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+}
+
+.logo{
+    font-size:1.2rem;
+    font-weight:900;
+}
+
+.nav-right{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.nav-links{
+    display:flex;
+    gap:22px;
+}
+
+.nav-links a{
+    color:#dbe5ff;
+    text-decoration:none;
+    font-weight:600;
+    transition:var(--transition);
+}
+
+.nav-links a:hover{
+    color:white;
+}
+
+.lang-btn{
+    border:none;
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+    color:white;
+    padding:10px 18px;
+    border-radius:14px;
+    font-family:'Cairo',sans-serif;
+    font-weight:700;
+    cursor:pointer;
+    transition:var(--transition);
+}
+
+.lang-btn:hover{
+    transform:translateY(-3px);
+    box-shadow:var(--shadow);
+}
+
+/* =====================================================
+   MOBILE MENU
+===================================================== */
+
+.menu-btn{
+    display:none;
+    font-size:1.4rem;
+    cursor:pointer;
+}
+
+@media(max-width:900px){
+
+    .menu-btn{
+        display:block;
+    }
+
+    .nav-links{
+        position:absolute;
+        top:100%;
+        right:0;
+        width:100%;
+        background:#081321;
+        flex-direction:column;
+        padding:20px;
+        display:none;
+        border-bottom:1px solid rgba(255,255,255,0.05);
+    }
+
+    .nav-links.show{
+        display:flex;
+    }
+}
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:150px 20px 90px;
+}
+
+.hero-content{
+    max-width:950px;
+}
+
+.hero-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:12px 22px;
+    border-radius:50px;
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.08);
+    margin-bottom:30px;
+    backdrop-filter:blur(10px);
+}
+
+.hero h1{
+    font-size:4rem;
+    line-height:1.3;
+    margin-bottom:25px;
+    font-weight:900;
+}
+
+.hero p{
+    color:#d0dbf6;
+    line-height:2;
+    font-size:1.2rem;
+    margin-bottom:40px;
+}
+
+.hero-buttons{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    text-decoration:none;
+    color:white;
+    padding:16px 34px;
+    border-radius:18px;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    transition:var(--transition);
+    font-weight:800;
+}
+
+.btn-primary{
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+    box-shadow:var(--shadow);
+}
+
+.btn-secondary{
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.08);
+}
+
+.btn:hover{
+    transform:translateY(-6px);
+}
+
+/* =====================================================
+   GENERAL SECTION
+===================================================== */
+
+section{
+    padding:100px 18px;
+    overflow:hidden;
+}
+
+.container{
+    max-width:1300px;
+    margin:auto;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:60px;
+}
+
+.section-title h2{
+    font-size:2.5rem;
+    margin-bottom:15px;
+}
+
+.section-title p{
+    color:#c3d0ea;
+    line-height:2;
+}
+
+/* =====================================================
+   SERVICES
+===================================================== */
+
+.services-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:25px;
+}
+
+.service-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:28px;
+    padding:35px 28px;
+    transition:var(--transition);
+    backdrop-filter:blur(12px);
+}
+
+.service-card:hover{
+    transform:translateY(-10px);
+    box-shadow:var(--shadow);
+    border-color:rgba(47,107,255,0.35);
+}
+
+.service-card i{
+    font-size:2.7rem;
+    color:#81a6ff;
+    margin-bottom:25px;
+}
+
+.service-card h3{
+    margin-bottom:15px;
+    font-size:1.4rem;
+}
+
+.service-card p{
+    line-height:2;
+    color:#d0dcf7;
+}
+
+/* =====================================================
+   NEWS
+===================================================== */
+
+.news-card{
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:30px;
+    padding:40px;
+    backdrop-filter:blur(12px);
+    transition:var(--transition);
+}
+
+.news-card:hover{
+    transform:translateY(-8px);
+    box-shadow:var(--shadow);
+}
+
+.news-date{
+    color:#8eb0ff;
+    margin-bottom:18px;
+    font-weight:700;
+}
+
+.news-title{
+    font-size:2rem;
+    margin-bottom:20px;
+    line-height:1.5;
+}
+
+.news-description{
+    color:#d1ddf7;
+    line-height:2.1;
+}
+
+/* =====================================================
+   CONTACT
+===================================================== */
+
+.contact-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:25px;
+}
+
+.contact-card{
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:28px;
+    padding:35px 28px;
+    transition:var(--transition);
+    backdrop-filter:blur(12px);
+}
+
+.contact-card:hover{
+    transform:translateY(-10px);
+    box-shadow:var(--shadow);
+}
+
+.contact-country{
+    color:#8db1ff;
+    margin-bottom:10px;
+    font-weight:700;
+}
+
+.contact-city{
+    font-size:1.5rem;
+    margin-bottom:18px;
+}
+
+.phone-number{
+    display:block;
+    direction:ltr;
+    text-align:left;
+    margin-bottom:25px;
+    font-size:1.1rem;
+    font-weight:700;
+}
+
+.whatsapp-btn{
+    text-decoration:none;
+    background:#25D366;
+    color:white;
+    padding:13px 24px;
+    border-radius:16px;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    transition:var(--transition);
+    font-weight:800;
+}
+
+.whatsapp-btn:hover{
+    transform:scale(1.05);
+}
+
+/* =====================================================
+   LOCATION
+===================================================== */
+
+.map-box{
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:30px;
+    overflow:hidden;
+    backdrop-filter:blur(12px);
+}
+
+.map-content{
+    padding:55px 30px;
+    text-align:center;
+}
+
+.map-content i{
+    font-size:3rem;
+    color:#8cb0ff;
+    margin-bottom:25px;
+}
+
+.map-content h3{
+    font-size:2rem;
+    margin-bottom:18px;
+}
+
+.map-content p{
+    color:#d1ddf7;
+    line-height:2;
+    max-width:700px;
+    margin:auto auto 30px;
+}
+
+.map-btn{
+    text-decoration:none;
+    color:white;
+    padding:15px 35px;
+    border-radius:18px;
+    background:linear-gradient(135deg,var(--primary),var(--secondary));
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    font-weight:800;
+    transition:var(--transition);
+    box-shadow:var(--shadow);
+}
+
+.map-btn:hover{
+    transform:translateY(-5px);
+}
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer{
+    margin-top:80px;
+    padding:60px 20px 30px;
+    background:#040913;
+    border-top:1px solid rgba(255,255,255,0.05);
+}
+
+.footer-content{
+    max-width:1300px;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    gap:40px;
+    flex-wrap:wrap;
+}
+
+.footer-logo{
+    font-size:1.7rem;
+    font-weight:900;
+    margin-bottom:15px;
+}
+
+.footer-desc{
+    max-width:420px;
+    line-height:2;
+    color:#c5d2eb;
+}
+
+.footer-links{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.footer-links a{
+    text-decoration:none;
+    color:#d8e2fb;
+    transition:var(--transition);
+}
+
+.footer-links a:hover{
+    color:white;
+}
+
+.copy{
+    text-align:center;
+    margin-top:45px;
+    color:#8594b5;
+}
+
+/* =====================================================
+   REVEAL
+===================================================== */
+
+.reveal{
+    opacity:0;
+    transform:translateY(60px);
+    transition:1s;
+}
+
+.reveal.active{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:768px){
+
+    .hero{
+        padding-top:180px;
+    }
+
+    .hero h1{
+        font-size:2.4rem;
+    }
+
+    .hero p{
+        font-size:1rem;
+    }
+
+    .section-title h2{
+        font-size:2rem;
+    }
+
+    .hero-buttons{
+        flex-direction:column;
+        align-items:center;
+    }
+
+    .btn{
+        width:100%;
+        max-width:320px;
+        justify-content:center;
+    }
+
+    .news-title{
+        font-size:1.5rem;
+    }
+
+    .service-card,
+    .contact-card,
+    .news-card{
+        padding:30px 22px;
+    }
+}
+
+@media(max-width:480px){
+
+    .hero h1{
+        font-size:2rem;
+    }
+
+    .logo{
+        font-size:1rem;
+    }
+}
+
+</style>
+</head>
+<body>
+
+<!-- =====================================================
+   LOADER
+===================================================== -->
+
+<div class="loader">
+    <div class="loader-circle"></div>
+</div>
+
+<!-- =====================================================
+   BACKGROUND
+===================================================== -->
+
+<div class="bg-glow">
+    <div class="glow glow1"></div>
+    <div class="glow glow2"></div>
+</div>
+
+<div class="particles" id="particles"></div>
+
+<!-- =====================================================
+   HEADER
+===================================================== -->
+
+<header>
+
+    <nav>
+
+        <div class="logo" id="logoText">
+            شركة البيان للشحن الخارجي
+        </div>
+
+        <div class="nav-right">
+
+            <button class="lang-btn" id="langBtn">
+                EN
+            </button>
+
+            <div class="menu-btn" id="menuBtn">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+
+            <div class="nav-links" id="navLinks">
+                <a href="#hero">الرئيسية</a>
+                <a href="#services">الخدمات</a>
+                <a href="#news">المستجدات</a>
+                <a href="#contact">التواصل</a>
+                <a href="#location">الموقع</a>
+            </div>
+
+        </div>
+
+    </nav>
+
+</header>
+
+<!-- =====================================================
+   HERO
+===================================================== -->
+
+<section class="hero" id="hero">
+
+    <div class="hero-content reveal">
+
+        <div class="hero-badge">
+            <i class="fa-solid fa-globe"></i>
+            خدمات شحن دولية احترافية
+        </div>
+
+        <h1 id="heroTitle">
+            شركة البيان للشحن الخارجي
+        </h1>
+
+        <p id="heroDesc">
+            نقل سريع وآمن بين الدول بأعلى درجات الموثوقية والخبرة،
+            لنمنح أعمالك تجربة شحن احترافية بمعايير عالمية حديثة.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="#contact"
+               class="btn btn-primary">
+
+                <i class="fa-solid fa-phone"></i>
+                تواصل معنا
+
+            </a>
+
+            <a href="#location"
+               class="btn btn-secondary">
+
+                <i class="fa-solid fa-location-dot"></i>
+                موقعنا
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+   SERVICES
+===================================================== -->
+
+<section id="services">
+
+    <div class="container">
+
+        <div class="section-title reveal">
+
+            <h2>خدماتنا</h2>
+
+            <p>
+                حلول لوجستية متكاملة بمعايير احترافية عالمية
+            </p>
+
+        </div>
+
+        <div class="services-grid">
+
+            <div class="service-card reveal">
+
+                <i class="fa-solid fa-plane"></i>
+
+                <h3>الشحن الدولي</h3>
+
+                <p>
+                    خدمات شحن دولية موثوقة وسريعة
+                    تربط أعمالك بالعالم بكفاءة عالية.
+                </p>
+
+            </div>
+
+            <div class="service-card reveal">
+
+                <i class="fa-solid fa-ship"></i>
+
+                <h3>الشحن البحري</h3>
+
+                <p>
+                    حلول شحن بحري احترافية
+                    للحاويات والبضائع التجارية.
+                </p>
+
+            </div>
+
+            <div class="service-card reveal">
+
+                <i class="fa-solid fa-truck"></i>
+
+                <h3>الشحن البري</h3>
+
+                <p>
+                    نقل بري سريع ومنظم
+                    يضمن وصول الشحنات بأمان.
+                </p>
+
+            </div>
+
+            <div class="service-card reveal">
+
+                <i class="fa-solid fa-file-contract"></i>
+
+                <h3>التخليص الجمركي</h3>
+
+                <p>
+                    إنجاز المعاملات الجمركية
+                    بسهولة واحترافية عالية.
+                </p>
+
+            </div>
+
+            <div class="service-card reveal">
+
+                <i class="fa-solid fa-bolt"></i>
+
+                <h3>التوصيل السريع</h3>
+
+                <p>
+                    خدمات توصيل عاجلة للشحنات
+                    المهمة والحساسة.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+   NEWS
+===================================================== -->
+
+<section id="news">
+
+    <div class="container">
+
+        <div class="section-title reveal">
+
+            <h2>آخر المستجدات</h2>
+
+            <p>
+                تابع أحدث الأخبار والتحديثات الخاصة بالشركة
+            </p>
+
+        </div>
+
+        <div class="news-card reveal">
+
+            <!-- START NEWS EDIT AREA -->
+
+            <div class="news-date">
+
+                <i class="fa-solid fa-calendar"></i>
+
+                2026 / 06 / 11
+
+            </div>
+
+            <h3 class="news-title">
+يتم وضع الأخبار هنا
+            </h3>
+
+            <p class="news-description">
+وهنا وصف الأخبار
+            </p>
+
+            <!-- END NEWS EDIT AREA -->
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+   CONTACT
+===================================================== -->
+
+<section id="contact">
+
+    <div class="container">
+
+        <div class="section-title reveal">
+
+            <h2>تواصل معنا</h2>
+
+            <p>
+                فريقنا جاهز لخدمتكم والإجابة على جميع استفساراتكم
+            </p>
+
+        </div>
+
+        <div class="contact-grid">
+
+            <!-- سوريا -->
+
+            <div class="contact-card reveal">
+
+                <div class="contact-country">
+                    سوريا
+                </div>
+
+                <h3 class="contact-city">
+                    حلب
+                </h3>
+
+                <span class="phone-number">
+                    +963944517214
+                </span>
+
+                <a href="https://api.whatsapp.com/send?phone=963944517214"
+                   target="_blank"
+                   class="whatsapp-btn">
+
+                    <i class="fab fa-whatsapp"></i>
+                    واتساب
+
+                </a>
+
+            </div>
+
+            <!-- سوريا -->
+
+            <div class="contact-card reveal">
+
+                <div class="contact-country">
+                    سوريا
+                </div>
+
+                <h3 class="contact-city">
+                    حلب
+                </h3>
+
+                <span class="phone-number">
+                    +963967586358
+                </span>
+
+                <a href="https://api.whatsapp.com/send?phone=963967586358"
+                   target="_blank"
+                   class="whatsapp-btn">
+
+                    <i class="fab fa-whatsapp"></i>
+                    واتساب
+
+                </a>
+
+            </div>
+
+            <!-- ليبيا -->
+
+            <div class="contact-card reveal">
+
+                <div class="contact-country">
+                    ليبيا
+                </div>
+
+                <h3 class="contact-city">
+                    طرابلس
+                </h3>
+
+                <span class="phone-number">
+                    00218927065470
+                </span>
+
+                <a href="https://api.whatsapp.com/send?phone=218927065470"
+                   target="_blank"
+                   class="whatsapp-btn">
+
+                    <i class="fab fa-whatsapp"></i>
+                    واتساب
+
+                </a>
+
+            </div>
+
+            <!-- ليبيا -->
+
+            <div class="contact-card reveal">
+
+                <div class="contact-country">
+                    ليبيا
+                </div>
+
+                <h3 class="contact-city">
+                    بنغازي
+                </h3>
+
+                <span class="phone-number">
+                    00218916674211
+                </span>
+
+                <a href="https://api.whatsapp.com/send?phone=218916674211"
+                   target="_blank"
+                   class="whatsapp-btn">
+
+                    <i class="fab fa-whatsapp"></i>
+                    واتساب
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+   LOCATION
+===================================================== -->
+
+<section id="location">
+
+    <div class="container">
+
+        <div class="section-title reveal">
+
+            <h2>موقعنا</h2>
+
+            <p>
+                زوروا فرعنا الرئيسي في مدينة حلب
+            </p>
+
+        </div>
+
+        <div class="map-box reveal">
+
+            <div class="map-content">
+
+                <i class="fa-solid fa-location-dot"></i>
+
+                <h3>
+                    فرع حلب
+                </h3>
+
+                <p>
+                    موقع مميز وسهل الوصول لتقديم
+                    أفضل خدمات الشحن والخدمات اللوجستية.
+                </p>
+
+                <a href="https://maps.app.goo.gl/AH5G8FYuZGGv8j5N6"
+                   target="_blank"
+                   class="map-btn">
+
+                    <i class="fa-solid fa-map-location-dot"></i>
+                    فتح الخريطة
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+   FOOTER
+===================================================== -->
+
+<footer>
+
+    <div class="footer-content">
+
+        <div>
+
+            <div class="footer-logo">
+                شركة البيان للشحن الخارجي
+            </div>
+
+            <div class="footer-desc">
+
+                حلول شحن احترافية تجمع بين
+                السرعة والأمان والخبرة
+                لتلبية احتياجات العملاء.
+
+            </div>
+
+        </div>
+
+        <div class="footer-links">
+
+            <a href="#hero">الرئيسية</a>
+            <a href="#services">الخدمات</a>
+            <a href="#news">المستجدات</a>
+            <a href="#contact">التواصل</a>
+
+        </div>
+
+    </div>
+
+    <div class="copy">
+        © 2026 جميع الحقوق محفوظة - شركة البيان للشحن الخارجي
+    </div>
+
+</footer>
+
+<!-- =====================================================
+   JAVASCRIPT
+===================================================== -->
+
+<script>
+
+/* =====================================================
+   LOADER
+===================================================== */
+
+window.addEventListener("load",()=>{
+
+    document.querySelector(".loader")
+    .classList.add("hide");
+
+});
+
+/* =====================================================
+   MOBILE MENU
+===================================================== */
+
+const menuBtn =
+document.getElementById("menuBtn");
+
+const navLinks =
+document.getElementById("navLinks");
+
+menuBtn.onclick = ()=>{
+
+    navLinks.classList.toggle("show");
+
+};
+
+/* =====================================================
+   PARTICLES
+===================================================== */
+
+const particles =
+document.getElementById("particles");
+
+for(let i=0;i<35;i++){
+
+    const span =
+    document.createElement("span");
+
+    span.style.left =
+    Math.random()*100 + "%";
+
+    span.style.bottom =
+    "-20px";
+
+    span.style.animationDuration =
+    (Math.random()*10 + 10)+"s";
+
+    span.style.animationDelay =
+    Math.random()*5+"s";
+
+    particles.appendChild(span);
+
+}
+
+/* =====================================================
+   REVEAL
+===================================================== */
+
+const reveals =
+document.querySelectorAll(".reveal");
+
+function revealSections(){
+
+    reveals.forEach(item=>{
+
+        const top =
+        item.getBoundingClientRect().top;
+
+        const windowHeight =
+        window.innerHeight;
+
+        if(top < windowHeight - 100){
+
+            item.classList.add("active");
+
+        }
+
+    });
+
+}
+
+window.addEventListener(
+"scroll",
+revealSections
+);
+
+revealSections();
+
+/* =====================================================
+   LANGUAGE TOGGLE
+===================================================== */
+
+const langBtn =
+document.getElementById("langBtn");
+
+let arabic = true;
+
+langBtn.onclick = ()=>{
+
+    arabic = !arabic;
+
+    if(!arabic){
+
+        document.documentElement.dir =
+        "ltr";
+
+        document.documentElement.lang =
+        "en";
+
+        document.getElementById(
+        "logoText").innerText =
+        "Al Bayan Shipping";
+
+        document.getElementById(
+        "heroTitle").innerText =
+        "Al Bayan International Shipping";
+
+        document.getElementById(
+        "heroDesc").innerText =
+        "Fast and secure logistics solutions with premium reliability and professional global standards.";
+
+        langBtn.innerText = "AR";
+
+    }else{
+
+        document.documentElement.dir =
+        "rtl";
+
+        document.documentElement.lang =
+        "ar";
+
+        document.getElementById(
+        "logoText").innerText =
+        "شركة البيان للشحن الخارجي";
+
+        document.getElementById(
+        "heroTitle").innerText =
+        "شركة البيان للشحن الخارجي";
+
+        document.getElementById(
+        "heroDesc").innerText =
+        "نقل سريع وآمن بين الدول بأعلى درجات الموثوقية والخبرة، لنمنح أعمالك تجربة شحن احترافية بمعايير عالمية حديثة.";
+
+        langBtn.innerText = "EN";
+
+    }
+
+};
+
+</script>
+
+</body>
+</html>
